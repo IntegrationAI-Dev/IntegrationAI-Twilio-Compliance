@@ -30,12 +30,8 @@
       margin-top: 32px;
       margin-bottom: 8px;
     }
-    p {
-      margin-bottom: 16px;
-    }
-    a {
-      color: #1a1a1a;
-    }
+    p { margin-bottom: 16px; }
+    a { color: #1a1a1a; }
     .back {
       display: inline-block;
       margin-bottom: 32px;
@@ -44,6 +40,7 @@
       font-size: 0.9rem;
     }
     .back:hover { color: #1a1a1a; }
+
     .opt-in-form {
       background: #fff;
       border: 1px solid #e0e0e0;
@@ -51,20 +48,39 @@
       padding: 32px;
       margin: 24px 0;
     }
-    .opt-in-form label {
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
       display: block;
       font-size: 0.95rem;
       margin-bottom: 8px;
       font-weight: 500;
     }
-    .opt-in-form input[type="tel"] {
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="email"] {
       width: 100%;
       padding: 12px 16px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
-      margin-bottom: 20px;
+      transition: border-color 0.15s;
     }
+    .form-group input:focus {
+      outline: none;
+      border-color: #1a1a1a;
+    }
+    .form-group input.error {
+      border-color: #dc2626;
+    }
+    .error-msg {
+      color: #dc2626;
+      font-size: 0.85rem;
+      margin-top: 6px;
+      display: none;
+    }
+
     .checkbox-row {
       display: flex;
       align-items: flex-start;
@@ -76,28 +92,55 @@
       width: 18px;
       height: 18px;
       flex-shrink: 0;
+      cursor: pointer;
     }
     .checkbox-row span {
       font-size: 0.9rem;
       color: #444;
     }
-    .opt-in-form button {
+
+    .btn {
       background: #1a1a1a;
       color: #fff;
       border: none;
-      padding: 12px 32px;
+      padding: 14px 36px;
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
+      transition: background 0.15s;
+      width: 100%;
     }
-    .opt-in-form button:hover {
-      background: #333;
+    .btn:hover { background: #333; }
+    .btn:disabled {
+      background: #999;
+      cursor: not-allowed;
     }
+
     .disclosure {
       font-size: 0.85rem;
       color: #888;
       margin-top: 16px;
     }
+
+    .success-msg {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      margin: 24px 0;
+    }
+    .success-msg h3 {
+      color: #166534;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    .success-msg p {
+      color: #15803d;
+      margin-bottom: 0;
+    }
+
     footer {
       margin-top: 64px;
       font-size: 0.85rem;
@@ -111,24 +154,44 @@
     <h1>SMS Notifications</h1>
     <p class="subtitle">Opt in to receive text messages from Integration AI LLC</p>
 
-    <div class="opt-in-form">
-      <label for="phone">Phone number</label>
-      <input type="tel" id="phone" placeholder="+1 (555) 555-1234" disabled>
+    <form class="opt-in-form" id="optInForm" novalidate>
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input type="text" id="name" placeholder="John Doe" autocomplete="name">
+        <p class="error-msg" id="nameError">Please enter your name.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" placeholder="+1 (555) 555-1234" autocomplete="tel">
+        <p class="error-msg" id="phoneError">Please enter a valid phone number.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email (optional)</label>
+        <input type="email" id="email" placeholder="john@example.com" autocomplete="email">
+      </div>
 
       <div class="checkbox-row">
         <input type="checkbox" id="sms-consent">
-        <span>I agree to receive SMS notifications from Integration AI LLC, including account alerts, payment reminders, and service updates. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out at any time. This consent is optional and is not required to use any service.</span>
+        <span>I agree to receive SMS notifications from Integration AI LLC, including account alerts, payment reminders, and service updates. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out at any time.</span>
       </div>
+      <p class="error-msg" id="consentError" style="margin-top: -12px; margin-bottom: 16px;">You must check this box to opt in.</p>
 
-      <button type="button" disabled>Subscribe</button>
+      <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">This consent is <strong>completely optional</strong> and is not required to use any of our services.</p>
 
-      <p class="disclosure">By checking the box above, you provide your express written consent to receive text messages from Integration AI LLC at the phone number provided. You can opt out at any time by replying STOP. Reply HELP for assistance. View our <a href="privacy.html">Privacy Policy</a>.</p>
+      <button type="submit" class="btn" id="submitBtn">Subscribe to SMS Notifications</button>
+
+      <p class="disclosure">By checking the box and clicking Subscribe, you provide your express written consent to receive text messages from Integration AI LLC at the phone number provided. You can opt out at any time by replying STOP. Reply HELP for assistance. View our <a href="privacy.html">Privacy Policy</a>.</p>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <h3>You're subscribed!</h3>
+      <p>You have successfully opted in to SMS notifications from Integration AI LLC. You will receive a confirmation text shortly. Reply STOP at any time to opt out.</p>
     </div>
 
-    <h2>How to Opt In</h2>
-    <p>You can opt in to SMS notifications in one of two ways:</p>
-    <p>1. Complete the form above by entering your phone number and checking the consent box.</p>
-    <p>2. Text <strong>START</strong> to our toll-free number to begin receiving messages.</p>
+    <h2>Other Ways to Opt In</h2>
+    <p>You can also opt in by texting <strong>START</strong> to our toll-free number to begin receiving messages.</p>
 
     <h2>How to Opt Out</h2>
     <p>Reply <strong>STOP</strong> to any message at any time. You will receive a confirmation and no further messages will be sent.</p>
@@ -146,5 +209,66 @@
       &copy; 2026 Integration AI LLC
     </footer>
   </div>
+
+  <script>
+    const form = document.getElementById('optInForm');
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const consentBox = document.getElementById('sms-consent');
+    const nameError = document.getElementById('nameError');
+    const phoneError = document.getElementById('phoneError');
+    const consentError = document.getElementById('consentError');
+    const successMsg = document.getElementById('successMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Clear errors on input
+    nameInput.addEventListener('input', () => {
+      nameInput.classList.remove('error');
+      nameError.style.display = 'none';
+    });
+    phoneInput.addEventListener('input', () => {
+      phoneInput.classList.remove('error');
+      phoneError.style.display = 'none';
+    });
+    consentBox.addEventListener('change', () => {
+      consentError.style.display = 'none';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      if (!nameInput.value.trim()) {
+        nameInput.classList.add('error');
+        nameError.style.display = 'block';
+        valid = false;
+      }
+
+      const phone = phoneInput.value.trim();
+      if (!phone || phone.length < 7) {
+        phoneInput.classList.add('error');
+        phoneError.style.display = 'block';
+        valid = false;
+      }
+
+      if (!consentBox.checked) {
+        consentError.style.display = 'block';
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Subscribing...';
+
+      // Simulate submission
+      setTimeout(() => {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
