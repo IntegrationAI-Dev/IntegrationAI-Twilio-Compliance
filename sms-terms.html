@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMS Terms &amp; Consent — Integration AI LLC</title>
+  <title>SMS Opt-In — Integration AI LLC</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -21,10 +21,9 @@
       font-size: 1.75rem;
       margin-bottom: 4px;
     }
-    .updated {
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 40px;
+    .subtitle {
+      color: #666;
+      margin-bottom: 32px;
     }
     h2 {
       font-size: 1.15rem;
@@ -45,18 +44,59 @@
       font-size: 0.9rem;
     }
     .back:hover { color: #1a1a1a; }
-    .consent-box {
+    .opt-in-form {
       background: #fff;
       border: 1px solid #e0e0e0;
       border-radius: 8px;
-      padding: 24px;
+      padding: 32px;
       margin: 24px 0;
     }
-    .consent-box p {
+    .opt-in-form label {
+      display: block;
+      font-size: 0.95rem;
       margin-bottom: 8px;
+      font-weight: 500;
     }
-    .consent-box p:last-child {
-      margin-bottom: 0;
+    .opt-in-form input[type="tel"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .checkbox-row span {
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .opt-in-form button {
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .opt-in-form button:hover {
+      background: #333;
+    }
+    .disclosure {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 16px;
     }
     footer {
       margin-top: 64px;
@@ -68,31 +108,36 @@
 <body>
   <div class="container">
     <a href="index.html" class="back">&larr; Back</a>
-    <h1>SMS Terms &amp; Consent</h1>
-    <p class="updated">Last updated: March 24, 2026</p>
+    <h1>SMS Notifications</h1>
+    <p class="subtitle">Opt in to receive text messages from Integration AI LLC</p>
 
-    <p>Integration AI LLC ("we", "us", "our") sends SMS notifications on behalf of our clients. These terms apply if you choose to opt in to receive text messages from us.</p>
+    <div class="opt-in-form">
+      <label for="phone">Phone number</label>
+      <input type="tel" id="phone" placeholder="+1 (555) 555-1234" disabled>
 
-    <h2>Opt-In</h2>
-    <div class="consent-box">
-      <p>Receiving text messages from Integration AI is <strong>completely optional</strong>. You may choose to opt in to receive SMS notifications such as account alerts, payment reminders, and service updates. Opting in is not required to use any of our services or our clients' services.</p>
-      <p>You can opt in by texting <strong>START</strong> to our number or by providing your phone number and separately agreeing to receive text messages when prompted.</p>
+      <div class="checkbox-row">
+        <input type="checkbox" id="sms-consent">
+        <span>I agree to receive SMS notifications from Integration AI LLC, including account alerts, payment reminders, and service updates. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out at any time. This consent is optional and is not required to use any service.</span>
+      </div>
+
+      <button type="button" disabled>Subscribe</button>
+
+      <p class="disclosure">By checking the box above, you provide your express written consent to receive text messages from Integration AI LLC at the phone number provided. You can opt out at any time by replying STOP. Reply HELP for assistance. View our <a href="privacy.html">Privacy Policy</a>.</p>
     </div>
 
-    <h2>Message Frequency</h2>
-    <p>Message frequency varies depending on account activity. You will typically receive no more than 10 messages per month.</p>
+    <h2>How to Opt In</h2>
+    <p>You can opt in to SMS notifications in one of two ways:</p>
+    <p>1. Complete the form above by entering your phone number and checking the consent box.</p>
+    <p>2. Text <strong>START</strong> to our toll-free number to begin receiving messages.</p>
 
-    <h2>Opt-Out</h2>
-    <p>You may opt out at any time by replying <strong>STOP</strong> to any message. You will receive a confirmation message and will not receive further texts unless you opt in again.</p>
+    <h2>How to Opt Out</h2>
+    <p>Reply <strong>STOP</strong> to any message at any time. You will receive a confirmation and no further messages will be sent.</p>
 
     <h2>Help</h2>
-    <p>For assistance, reply <strong>HELP</strong> to any message or email us at <a href="mailto:team.integrationai@gmail.com">team.integrationai@gmail.com</a>.</p>
+    <p>Reply <strong>HELP</strong> to any message, or email <a href="mailto:team.integrationai@gmail.com">team.integrationai@gmail.com</a>.</p>
 
-    <h2>Costs</h2>
-    <p>Message and data rates may apply. Check with your mobile carrier for details.</p>
-
-    <h2>Privacy</h2>
-    <p>We do not sell or share your phone number or personal information with third parties. See our full <a href="privacy.html">Privacy Policy</a> for details.</p>
+    <h2>Message Details</h2>
+    <p>Message frequency varies based on account activity. Message and data rates may apply. Check with your carrier for details.</p>
 
     <h2>Contact</h2>
     <p>Integration AI LLC<br>Email: <a href="mailto:team.integrationai@gmail.com">team.integrationai@gmail.com</a></p>
