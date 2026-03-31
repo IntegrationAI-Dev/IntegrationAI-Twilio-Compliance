@@ -231,6 +231,10 @@
       emailError.style.display = 'none';
     });
 
+    document.getElementById('terms-consent').addEventListener('change', function() {
+      this.parentElement.style.outline = 'none';
+    });
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       let valid = true;
@@ -253,7 +257,14 @@
         valid = false;
       }
 
-      // Phone and checkboxes are NOT required
+      // Terms & Privacy checkbox IS required, SMS consent is NOT
+      const termsBox = document.getElementById('terms-consent');
+      if (!termsBox.checked) {
+        termsBox.parentElement.style.outline = '2px solid #dc2626';
+        termsBox.parentElement.style.borderRadius = '4px';
+        valid = false;
+      }
+
       if (!valid) return;
 
       submitBtn.disabled = true;
